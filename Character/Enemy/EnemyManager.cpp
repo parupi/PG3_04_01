@@ -12,8 +12,13 @@ void EnemyManager::Initialize()
 
 void EnemyManager::Update()
 {
-	for (const auto& enemy : enemies_) {
-		enemy->Update();
+	for (auto it = enemies_.begin(); it != enemies_.end();) {
+		(*it)->Update();
+		if (!(*it)->IsAlive()) {
+			it = enemies_.erase(it);
+		} else {
+			++it;
+		}
 	}
 }
 

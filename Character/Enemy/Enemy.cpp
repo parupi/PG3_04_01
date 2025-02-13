@@ -17,3 +17,8 @@ void Enemy::Draw()
 {
 	Novice::DrawBox(int(position_.x - size_.x / 2.0f), int(position_.y - size_.y / 2.0f), int(size_.x), int(size_.y), 0.0f, 0xFF0000FF, kFillModeSolid);
 }
+
+void Enemy::OnCollision()
+{
+	isAlive = false;
+}

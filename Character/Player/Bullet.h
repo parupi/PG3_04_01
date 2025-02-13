@@ -7,8 +7,12 @@ public:
 	void Update();
 	void Draw();
 
-public:
+public: // アクセッサ
 	bool IsAlive() const { return isAlive; }
+	Vector2 GetPosition() const { return position_; }
+	Vector2 GetSize() const { return size_; }
+
+	void OnCollision();
 
 private:
 	Vector2 position_;

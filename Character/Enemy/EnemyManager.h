@@ -12,5 +12,9 @@ private:
 	std::list<std::unique_ptr<Enemy>> enemies_;
 
 	const int enemyNum = 4;
+
+public:
+	const std::list<std::unique_ptr<Enemy>>& GetEnemies() const { return enemies_; }
+
 };
 

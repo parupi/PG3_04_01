@@ -9,6 +9,8 @@ public:
 	void Initialize() override;
 	void Update(char keys[256], char preKeys[256]) override;
 	void Draw() override;
+	void CheckCollision();
+	void CheckIsClear();
 
 private:
 	std::unique_ptr<Player> player_;

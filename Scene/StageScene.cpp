@@ -2,6 +2,12 @@
 
 void StageScene::Initialize()
 {
+	inputHandler_ = std::make_unique<InputHandler>();
+
+	inputHandler_->AssignMoveRightCommand2PressKeyD();
+	inputHandler_->AssignMoveLeftCommand2PressKeyA();
+	inputHandler_->AssignShotBulletCommand2PressKeySpace();
+
 	player_ = std::make_unique<Player>();
 	player_->Initialize();
 
@@ -11,7 +17,15 @@ void StageScene::Initialize()
 
 void StageScene::Update(char keys[256], char preKeys[256])
 {
-	player_->Update(keys, preKeys);
+	std::vector<ICommand*> commands = inputHandler_->HandleInput();
+
+	for (ICommand* command : commands) {
+		if (command) {
+			command->Exec(*player_); // すべての押されたキーのコマンドを実行
+		}
+	}
+
+	player_->Update();
 	enemyManager_->Update();
 
 	CheckCollision();
